@@ -6,7 +6,6 @@ const mongoDB = require('./db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtSecret = "secret";
-const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 const accountSid = 'AC95eb4bc976a7d1c3fdf010af6d15342f';
 const authToken = 'b64dda4842088d6763a17dee4f6600aa';
