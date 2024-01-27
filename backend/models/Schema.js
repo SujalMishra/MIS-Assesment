@@ -32,6 +32,7 @@ const TravelerSchema = new Schema({
 const TripsSchema = new Schema({
     driverName: { type: String, required: true,},
     driverPhoneNumber: { type: String, required: true,},
+    driverMail: { type: String, required: true,},
     cabNumber: { type: String, required: true,},
     startlocation: { type: String, required: true,},
     endlocation: { type: String, required: true,},
@@ -42,6 +43,7 @@ const TripsSchema = new Schema({
     endTime: { type: Date,required: true,},
     Feedback: [feedbackSchema],
 });
+
 module.exports = {
     Ride: mongoose.model("Ride", RideSchema),
     Feedback: mongoose.model("Feedback", feedbackSchema),
