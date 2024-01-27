@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+
 const jwt = require('jsonwebtoken');
 const jwtSecret = "secret";
 const { Traveler, Feedback, Trips } = require('../models/Schema');
@@ -47,6 +49,12 @@ const Login = async (req, res) => {
             }
         }
         const authToken = jwt.sign(data, jwtSecret);
+         
+
+        res.cookie("jwtoken", authToken, {
+            expires: new Date(Date.now() + 86400000),
+            httpOnly: true
+        });
         return res.json({ success: true, userData, authToken: authToken });
     } catch (error) {
         console.log("db error" + error);

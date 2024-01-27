@@ -1,6 +1,7 @@
 // src/Home.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 import AvailableRides from './AvailableRides';
 import PreviousRides from './Previous_Rides';
 import Feedbacks from './Feedback'; 
@@ -11,9 +12,13 @@ function Home() {
   const [rides, setRides] = useState([]);
   const [view, setView] = useState('available'); // State for tracking the view
 
+  const [cookies, setCookie, removeCookie] = useCookies(['jwtoken']);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
     console.log('Logout clicked');
+    removeCookie('jwtoken'); 
+    navigate('/'); 
   };
 
   const handleHome = () => {
@@ -56,7 +61,7 @@ function Home() {
           className={`bg-${view === 'previous' ? 'blue' : 'green'}-500 hover:bg-${view === 'previous' ? 'blue' : 'green'}-600 text-white py-2 px-4 rounded mb-2`}
           onClick={handlePreviousRides}
         >
-          Previous Rides
+          My Rides
         </button>
         <button
           className={`bg-${view === 'feedbacks' ? 'blue' : 'green'}-500 hover:bg-${view === 'feedbacks' ? 'blue' : 'green'}-600 text-white py-2 px-4 rounded mb-2`}
@@ -81,7 +86,7 @@ function Home() {
       {/* Right side: Available Rides, Previous Rides, or Feedbacks based on the view */}
       <div className="w-3/4 p-4">
         {/* Render either AvailableRides, PreviousRides, or Feedbacks based on the view */}
-        {view === 'available' ? <AvailableRides rides={rides} /> : null}
+        {view === 'available' ? <AvailableRides /> : null}
         {view === 'previous' ? <PreviousRides /> : null}
         {view === 'feedbacks' ? <Feedbacks /> : null}
         {view === 'createRide' ? <CreateRide /> : null}

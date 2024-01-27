@@ -1,8 +1,24 @@
 // src/CreateRide.js
 import React, { useState } from 'react';
+import PhoneInput from 'react-phone-number-input';
+import axios from 'axios';
+import { useUser } from '../UserContext';
 
 const CreateRide = () => {
   // State to manage form data
+  // State to manage form data
+  const {user} = useUser();
+const [phone, setPhone] = useState('');
+
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+    setFormData({
+      ...formData,
+      phone: value,
+    });
+  };
+
+
   const [formData, setFormData] = useState({
     driverName: '',
     carNumber: '',
@@ -22,7 +38,7 @@ const CreateRide = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Your logic to handle the form submission (e.g., send data to the server)
     console.log('Form data submitted:', formData);
@@ -36,10 +52,36 @@ const CreateRide = () => {
       endTime: '',
       numberOfCompanions: '',
     });
+    console.log(phone +  " " + user.email + " " + formData.driverName + " " + formData.carNumber + " " + formData.startLocation + " " + formData.endLocation + " " + formData.startTime + " " + formData.endTime + " " + formData.numberOfCompanions   );
+    try {
+      const response = await axios.post('http://localhost:4000/trip/', {
+        driverName: formData.driverName,
+        driverPhoneNumber: phone,
+        driverMail: user.email,
+        cabNumber: formData.carNumber,
+        startlocation: formData.startLocation,
+        endlocation: formData.endLocation,
+        status: 'Available',
+        numberofCompanions: formData.numberOfCompanions,
+        companions:[],
+        startTime: formData.startTime,
+        endTime: formData.endTime,
+        Feedback:[]
+      });
+      
+      console.log("hello")
+    } catch (error) {
+      console.error('Error during signup:', error.response.data.message);
+    }
   };
 
+  // const handleCreateRide = async () => {
+  //   console.log('Create Ride clicked');
+    
+  // };
+
   return (
-    <div className="w-1/2 mx-auto mt-8">
+    <div className="w-1/2 mx-auto bg-gray-800 p-8 rounded-md mt-8">
       <h2 className="text-2xl font-bold mb-4">Create a Ride</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Driver Name */}
@@ -72,6 +114,19 @@ const CreateRide = () => {
             required
             className="w-full p-2 border text-black border-gray-400 rounded"
           />
+        </div>
+        <div>
+        <label htmlFor="whatsapp_number" className="block text-sm font-medium text-gray-400">
+              WhatsApp Number
+            </label>
+            <PhoneInput
+              id="whatsapp_number"
+              name="whatsapp_number"
+              className="mt-1 p-2 w-full border-2 text-black border-gray-600 rounded focus:outline-none focus:border-green-500"
+              placeholder="Enter your WhatsApp Number"
+              value={phone}
+              onChange={handlePhoneChange}
+            />
         </div>
 
         {/* Start Location */}

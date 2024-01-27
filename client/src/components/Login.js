@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Link , useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie';
+import { useUser } from '../UserContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const { loginUser } = useUser();
 
   const handleLogin = async () => {
-    console.log('Login clicked ' + email + password);
+    console.log('Login clicked ');
     try {
-      const response = await axios.post('http://localhost:4000/loginuser', {
+      const response = await axios.post('http://localhost:4000/user/login', {
         email: email,
         password: password,
       });
-
-      console.log(response.data);
+      Cookies.set('jwtoken', response.data.authToken, { expires: 1, path: '/' });
+      loginUser(response.data.authToken, response.data.userData._id, response.data.userData.email);
       setUser(response.data);
-      localStorage.setItem('User', response.data.authToken);
+      // localStorage.setItem('User', response.data.authToken);
+      navigate("/home");
     } catch (error) {
       console.error('Error during login:', error.response.data.message);
     }

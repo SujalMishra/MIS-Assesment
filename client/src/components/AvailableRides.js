@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { useUser } from '../UserContext';
 
 
 
@@ -8,22 +9,37 @@ import axios from 'axios';
 function AvailableRides() {
     const [searchTerm, setSearchTerm] = useState('');
     const [rides, setRides] = useState([]);
+    const {user} = useUser();
 
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/trip/available');
+        console.log(response);
+        setRides(response.data.tripsData);
+      } catch (error) {
+        console.log("db error" + error);
+      }
+    };
+  
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get('http://localhost:4000/gettrips');
-            console.log(response);
-            setRides(response.data.tripsData);
-          } catch (error) {
-            console.log("db error" + error);
-          }
-        };
-      
         fetchData(); 
       }, []);
       
-
+    const handleBooking = async (id) => {
+        console.log('Book Now clicked');
+        // Your logic to book a ride
+        try {
+            let _email = user.email;
+            const res = await axios.post(`http://localhost:4000/book/${id}`,
+             {email: _email} 
+            );
+            console.log(res);
+        }
+        catch (error) {
+            console.log("db error" + error);
+        }
+    }
+     
     const handleSearch = () => {
         const filteredRides = rides.filter((ride) => ride.startlocation === searchTerm);
         setRides(filteredRides);
@@ -58,13 +74,14 @@ function AvailableRides() {
                 {ride.status}
                 </span>
             </div>
+            <p>Ride Id: {ride._id}</p>
             <p>Driver name: {ride.driverName}</p>
-            <p>Price: {ride.price}</p>
+            {/* <p>Price: {ride.price}</p> */}
             <p>Companions: {ride.numberofCompanions}</p>
             <p>Starts at: {ride.startTime}</p>
             <p>From: {ride.startlocation}</p>
             <p>To: {ride.endlocation}</p>
-            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">
+            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded" onClick={() =>handleBooking(ride._id)}>
                 Book Now
             </button>
             </div>

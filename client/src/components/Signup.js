@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+import {Link , useNavigate} from "react-router-dom";
 
 function SignUp() {
+  const [phone, setPhone] = useState();
+  const navigate = useNavigate();
+
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+  };
   const [userdata, setUserdata] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     name: '',
-    whatsapp_number: '0',
+    whatsapp_number: '',
     licenseNumber: '',
   });
 
@@ -19,9 +28,9 @@ function SignUp() {
   };
 
   const handleSignUp = async () => {
-    console.log('Sign Up clicked', userdata);
+    console.log('Sign Up clicked');
     try {
-      const response = await axios.post('http://localhost:4000/signupuser', {
+      const response = await axios.post('http://localhost:4000/user/signup', {
         email: userdata.email,
         password: userdata.password,
         confirmPassword: userdata.confirmPassword,
@@ -30,9 +39,8 @@ function SignUp() {
         licenseNumber: userdata.licenseNumber,
       });
 
-      console.log(response.data);
-      // setUser(response.data);
       localStorage.setItem('User', response.data.authToken);
+      navigate("/login");
     } catch (error) {
       console.error('Error during signup:', error.response.data.message);
     }
@@ -89,14 +97,13 @@ function SignUp() {
             <label htmlFor="whatsapp_number" className="block text-sm font-medium text-gray-400">
               WhatsApp Number
             </label>
-            <input
-              type="number"
+            <PhoneInput
               id="whatsapp_number"
               name="whatsapp_number"
               className="mt-1 p-2 w-full border-2 border-gray-600 rounded focus:outline-none focus:border-green-500"
               placeholder="Enter your WhatsApp Number"
-              value={userdata.whatsapp_number}
-              onChange={handleChanges}
+              value={phone}
+              onChange={handlePhoneChange}
             />
           </div>
           <div className="mb-4">

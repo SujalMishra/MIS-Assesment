@@ -1,16 +1,27 @@
 // src/Feedbacks.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useUser } from '../UserContext';
 
 function Feedbacks() {
   // State for feedback data
   const [feedbacks, setFeedbacks] = useState([]);
-
-//   useEffect(async () => {
-//     // Fetch feedback data from the backend API
-//     const response = await axios.get('http://localhost:4000/feedbacks');
-//     setFeedbacks(response.data.feedbacksData);
-//   }, []);
+  const {user} = useUser();
+  useEffect( () => {
+    let id = user.userId;
+    let mail = user.email;
+    const fetchData = async () => {
+      console.log(id + " " + mail);
+      try {
+        const response = await axios.post(`http://localhost:4000/user/feedback/${id}`, {email: mail});
+        console.log(response.data.feedbacks);
+        setFeedbacks(response.data.feedbacks);
+      } catch (error) {
+        console.error('Error fetching feedback data:', error);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-black text-white">
@@ -23,12 +34,12 @@ function Feedbacks() {
           feedbacks.map((feedback) => (
             <div key={feedback._id} className="mb-4 border border-gray-600 p-4 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-lg font-semibold">Feedback from {feedback.from}</p>
+                <p className="text-lg font-semibold">Feedback from: {feedback.from}</p>
                 <span className={`px-2 py-1 rounded ${feedback.rating >= 4 ? 'bg-green-500' : 'bg-yellow-500'}`}>
-                  {feedback.rating}
+                  {feedback.review} 
                 </span>
               </div>
-              <p>{feedback.comment}</p>
+              <p>To: {feedback.to}</p>
             </div>
           ))
         )}
