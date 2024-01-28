@@ -2,6 +2,8 @@
 
 This repository contains the source code for a RideSharing Platform with a React frontend and a Node.js backend.
 
+- [Case Study of application](https://drive.google.com/file/d/1cB9jvHtnx0QeHiudCJ0iTsWCd18tWT8h/view?usp=sharing)
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) installed on your machine
