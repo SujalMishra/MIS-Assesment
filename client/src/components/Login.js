@@ -21,7 +21,6 @@ function Login() {
       Cookies.set('jwtoken', response.data.authToken, { expires: 1, path: '/' });
       loginUser(response.data.authToken, response.data.userData._id, response.data.userData.email);
       setUser(response.data);
-      // localStorage.setItem('User', response.data.authToken);
       navigate("/home");
     } catch (error) {
       console.error('Error during login:', error.response.data.message);

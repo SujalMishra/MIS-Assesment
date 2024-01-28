@@ -25,7 +25,7 @@ function Feedbacks() {
 
   return (
     <div className="flex min-h-screen bg-black text-white">
-      {/* Display feedbacks */}
+      
       <div className="w-3/4 p-4">
         <h2 className="text-2xl font-bold mb-4">Feedbacks</h2>
         {feedbacks.length === 0 ? (

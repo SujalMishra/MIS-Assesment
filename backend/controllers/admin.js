@@ -10,7 +10,7 @@ const Login = async (req, res) => {
         if (!userData) {
             return res.status(400).json({ errors: "Try logging with right credentials" });
         }
-        // const pwdCompare = await bcrypt.compare(req.body.password, userData.password);
+        
         if (req.body.password != userData.password) {
             console.log(req.body.password + " " + userData.password);
             return res.status(400).json({ errors: "Try logging1 with right credentials" });

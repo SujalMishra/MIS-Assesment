@@ -27,7 +27,7 @@ function AvailableRides() {
       
     const handleBooking = async (id) => {
         console.log('Book Now clicked');
-        // Your logic to book a ride
+        
         try {
             let _email = user.email;
             const res = await axios.post(`http://localhost:4000/book/${id}`,
@@ -61,7 +61,7 @@ function AvailableRides() {
             Search
           </button>
         </div>
-        {/* Display available rides and booking options here */}
+       
         <h2 className="text-2xl font-bold mb-4">Available Rides</h2>
                 {rides.length === 0 ? (
         <p className="text-gray-400">No rides available</p>
@@ -88,9 +88,7 @@ function AvailableRides() {
         ))
 )}
 
-        
-        {/* Add more ride details as needed */}
-    </div>
+        </div>
   )
 }
 

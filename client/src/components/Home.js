@@ -1,4 +1,3 @@
-// src/Home.js
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +7,8 @@ import Feedbacks from './Feedback';
 import CreateRide from './createRide';
 
 function Home() {
-  // Dummy ride data for illustration
-  const [rides, setRides] = useState([]);
-  const [view, setView] = useState('available'); // State for tracking the view
+  
+  const [view, setView] = useState('available'); 
 
   const [cookies, setCookie, removeCookie] = useCookies(['jwtoken']);
   const navigate = useNavigate();
@@ -23,13 +21,13 @@ function Home() {
 
   const handleHome = () => {
     console.log('Home clicked');
-    setView('available'); // Switch to available rides view
+    setView('available');
   };
 
   const handlePreviousRides = () => {
-    // Your logic to navigate to the previous rides page
+    
     console.log('Previous Rides clicked');
-    setView('previous'); // Switch to previous rides view
+    setView('previous'); 
   };
 
     const handleCreateRide = () => {
@@ -37,20 +35,18 @@ function Home() {
         setView('createRide'); 
     };
   const handleFeedbacks = () => {
-    // Your logic to navigate to the feedbacks page
+   
     console.log('Feedbacks clicked');
-    setView('feedbacks'); // Switch to feedbacks view
+    setView('feedbacks'); 
   };
 
 
   return (
     <div className="flex min-h-screen bg-black text-white">
-      {/* Left side: User Data */}
+     
       <div className="w-1/5 p-4 border-r flex flex-col border-gray-600">
-        {/* Display user data here */}
+       
         <h2 className="text-3xl font-bold ml-16 mb-2">Dashboard</h2>
-        {/* Add user details like name, email, etc. */}
-        {/* Add buttons for user actions */}
         <button
           className={`bg-${view === 'available' ? 'blue' : 'green'}-500 hover:bg-${view === 'available' ? 'blue' : 'green'}-600 text-white py-2 px-4 rounded mb-2`}
           onClick={handleHome}
@@ -83,9 +79,7 @@ function Home() {
         </button>
       </div>
 
-      {/* Right side: Available Rides, Previous Rides, or Feedbacks based on the view */}
       <div className="w-3/4 p-4">
-        {/* Render either AvailableRides, PreviousRides, or Feedbacks based on the view */}
         {view === 'available' ? <AvailableRides /> : null}
         {view === 'previous' ? <PreviousRides /> : null}
         {view === 'feedbacks' ? <Feedbacks /> : null}

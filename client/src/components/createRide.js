@@ -5,8 +5,7 @@ import axios from 'axios';
 import { useUser } from '../UserContext';
 
 const CreateRide = () => {
-  // State to manage form data
-  // State to manage form data
+  
   const {user} = useUser();
 const [phone, setPhone] = useState('');
 
@@ -29,7 +28,7 @@ const [phone, setPhone] = useState('');
     numberOfCompanions: '',
   });
 
-  // Handle form input changes
+ 
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,12 +36,12 @@ const [phone, setPhone] = useState('');
     });
   };
 
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Your logic to handle the form submission (e.g., send data to the server)
+  
     console.log('Form data submitted:', formData);
-    // Clear the form after submission
+   
     setFormData({
       driverName: '',
       carNumber: '',
@@ -75,16 +74,13 @@ const [phone, setPhone] = useState('');
     }
   };
 
-  // const handleCreateRide = async () => {
-  //   console.log('Create Ride clicked');
-    
-  // };
+ 
 
   return (
     <div className="w-1/2 mx-auto bg-gray-800 p-8 rounded-md mt-8">
       <h2 className="text-2xl font-bold mb-4">Create a Ride</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Driver Name */}
+       
         <div>
           <label htmlFor="driverName" className="block text-white">
             Driver Name:
@@ -100,7 +96,7 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* Car Number */}
+    
         <div>
           <label htmlFor="carNumber" className="block text-white">
             Car Number:
@@ -129,7 +125,7 @@ const [phone, setPhone] = useState('');
             />
         </div>
 
-        {/* Start Location */}
+      
         <div>
           <label htmlFor="startLocation" className="block text-white">
             Start Location:
@@ -145,7 +141,7 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* End Location */}
+
         <div>
           <label htmlFor="endLocation" className="block text-white">
             End Location:
@@ -161,7 +157,6 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* Start Date and Time */}
         <div>
           <label htmlFor="startTime" className="block text-white">
             Start Date and Time:
@@ -177,7 +172,6 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* End Date and Time */}
         <div>
           <label htmlFor="endTime" className="block text-white">
             End Date and Time:
@@ -193,7 +187,7 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* Number of Companions */}
+
         <div>
           <label htmlFor="numberOfCompanions" className="block text-white">
             Number of Companions:
@@ -209,7 +203,6 @@ const [phone, setPhone] = useState('');
           />
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"

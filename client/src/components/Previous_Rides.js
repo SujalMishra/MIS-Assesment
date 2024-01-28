@@ -26,8 +26,6 @@ function PreviousRides() {
 
   const handleSubmitFeedback = async (e) => {
     e.preventDefault();
-    // Your logic to handle feedback submission
-    console.log(feedbackForm.mail + ' ' + 1+feedbackForm.feedbackText)
     try {
       const response = await axios.post('http://localhost:4000/feedback', {
         'to': feedbackForm.mail,
@@ -46,8 +44,7 @@ function PreviousRides() {
   };
 
   const handleSearch = () => {
-    // Filter rides from the rides array according to the start location that is the search term
-    const filteredRides = previousRides.filter((ride) => ride.startlocation === searchTerm);
+     const filteredRides = previousRides.filter((ride) => ride.startlocation === searchTerm);
     setPreviousRides(filteredRides);
   };
 
@@ -69,7 +66,7 @@ function PreviousRides() {
   return (
     <>
       <div>
-        {/* Search Bar */}
+       
         <div className="flex mb-4">
           <input
             type="text"

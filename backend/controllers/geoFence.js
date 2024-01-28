@@ -1,20 +1,20 @@
 const twilio = require('twilio');
 require('dotenv').config();
-const accountSid = process.env.Twilio_Sid; // Replace with your Twilio Account SID
+const accountSid = process.env.Twilio_Sid; 
 const authToken = process.env.Twilio_Token;
 const twilioClient = twilio(accountSid, authToken);
 
 const geoSend = async (req, res) => {
     const { eventType, geofenceId, location, timestamp, phone_num } = req.body;
 
-    // Handle the geofence event
+    
     console.log(`Received ${eventType} event for geofence ${geofenceId} at ${location.lat}, ${location.lng} - ${timestamp}, ${phone_num}`);
 
-    // Send WhatsApp notification
+    
     console.log(eventType, geofenceId, location, timestamp, phone_num);
     await sendWhatsAppNotification(eventType, geofenceId, location, timestamp, phone_num);
 
-    // Respond to the mobile app
+   
     res.status(200).send('Geofence event received');
 };
 

@@ -3,8 +3,8 @@ require("dotenv").config();
 const { Trips } = require("../models/Schema");
 const twilio = require("twilio"); // Import Twilio
 
-const accountSid = process.env.Twilio_Sid; // Replace with your Twilio Account SID
-const authToken = process.env.Twilio_Token; // Replace with your Twilio Auth Token
+const accountSid = process.env.Twilio_Sid; 
+const authToken = process.env.Twilio_Token; 
 const client = new twilio(accountSid, authToken);
 
 const BookRide = async (req, res) => {
@@ -24,13 +24,13 @@ const BookRide = async (req, res) => {
 
         // Send SMS notification to the driver
         // const driverPhoneNumber = trip.driverPhoneNumber; // Replace with the actual path to driver's phone number
-        const message = `New booking for your ride! Companion email: ${email}`;
+        // const message = `New booking for your ride! Companion email: ${email}`;
         
-        client.messages.create({
-            body: message,
-            from: '+19863335198', // Replace with your Twilio phone number
-            to: '+919630587717',
-        }).then((message) => console.log(message.sid)); 
+        // client.messages.create({
+        //     body: message,
+        //     from: '+19863335198', // Replace with your Twilio phone number
+        //     to: '+919630587717',
+        // }).then((message) => console.log(message.sid)); 
 
         // Update trip details
         console.log(email);
