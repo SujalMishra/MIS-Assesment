@@ -75,11 +75,11 @@ function PreviousRides() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="p-2 border border-gray-600 text-black rounded-l w-3/4"
+            className="p-2 border border-gray-600 text-black rounded-l w-5/6"
             placeholder="Search by Start Location"
           />
           <button
-            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-r"
+            className="bg-green-500 hover:bg-green-600 text-white ml-4 w-64 py-2 px-4 rounded"
             onClick={handleSearch}
           >
             Search
@@ -103,7 +103,7 @@ function PreviousRides() {
               <p>Driver name: {ride.driverName}</p>
               <p>Driver mail: {ride.driverMail}</p>
               <p>Companions: {ride.numberofCompanions}</p>
-              <p>Starts at: {ride.startTime}</p>
+              <p>Starts at: {new Date(ride.startTime).toLocaleString()}</p>
               <p>From: {ride.startlocation}</p>
               <p>Destination: {ride.endlocation}</p>
               {user.email != ride.driverMail && ( 

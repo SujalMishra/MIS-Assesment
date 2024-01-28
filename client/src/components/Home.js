@@ -48,7 +48,7 @@ function Home() {
       {/* Left side: User Data */}
       <div className="w-1/5 p-4 border-r flex flex-col border-gray-600">
         {/* Display user data here */}
-        <h2 className="text-xl font-bold ml-14 mb-2">User Profile</h2>
+        <h2 className="text-3xl font-bold ml-16 mb-2">Dashboard</h2>
         {/* Add user details like name, email, etc. */}
         {/* Add buttons for user actions */}
         <button
