@@ -2,7 +2,7 @@
 
 This repository contains the source code for a RideSharing Platform with a React frontend and a Node.js backend.
 
-- [Case Study of application](https://drive.google.com/file/d/1cB9jvHtnx0QeHiudCJ0iTsWCd18tWT8h/view?usp=sharing)
+- [Case Study Document of application](https://drive.google.com/file/d/1cB9jvHtnx0QeHiudCJ0iTsWCd18tWT8h/view?usp=sharing)
 
   # Demo
   https://github.com/SujalMishra/MIS-Assesment/assets/98722988/8d85fd5d-f913-4eb7-bd8c-de0ee5fa640d
@@ -16,10 +16,10 @@ This repository contains the source code for a RideSharing Platform with a React
 
 ```bash
 # Clone the repository
-git clone https://github.com/SujalMishra/MIS-Assesment.git
+git clone https://github.com/SujalMishra/RideSharing-MIS_Assesment.git
 
 # Navigate to the project root
-cd MIS-Assesment
+cd RideSharing-MIS_Assesment
 ```
 # Client
 ```bash
