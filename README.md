@@ -11,6 +11,7 @@ This repository contains the source code for a RideSharing Platform with a React
 
 - [Node.js](https://nodejs.org/) installed on your machine
 - [npm](https://www.npmjs.com/) package manager
+- [mongoDB](https://www.mongodb.com/) Database
 
 ## Getting Started
 
