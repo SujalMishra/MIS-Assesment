@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 const { Trips } = require("../models/Schema");
 const twilio = require("twilio"); // Import Twilio
 
-const accountSid = 'AC95eb4bc976a7d1c3fdf010af6d15342f'; // Replace with your Twilio Account SID
-const authToken = '99dff26db954f45184b4a6149ac60f42'; // Replace with your Twilio Auth Token
+const accountSid = process.env.Twilio_Sid; // Replace with your Twilio Account SID
+const authToken = process.env.Twilio_Token; // Replace with your Twilio Auth Token
 const client = new twilio(accountSid, authToken);
 
 const BookRide = async (req, res) => {

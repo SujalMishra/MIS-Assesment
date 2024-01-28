@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb+srv://sujalmishra374:chotu123@cluster1.h5pe0ri.mongodb.net/Ride_Sharing?retryWrites=true&w=majority';
+require('dotenv').config();
+const password = process.env.MONGO_PASSWORD;
+const mongoURI = `mongodb+srv://sujalmishra374:${password}@cluster1.h5pe0ri.mongodb.net/Ride_Sharing?retryWrites=true&w=majority`;
 
 const mongoDB = async () => {
   try {

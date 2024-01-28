@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
-
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const jwtSecret = "secret";
+const jwtSecret = process.env.JWT_SECRET;
 const { Traveler, Feedback, Trips } = require('../models/Schema');
 
 const Signup = async (req, res) => {
