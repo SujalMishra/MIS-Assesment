@@ -4,6 +4,9 @@ This repository contains the source code for a RideSharing Platform with a React
 
 - [Case Study of application](https://drive.google.com/file/d/1cB9jvHtnx0QeHiudCJ0iTsWCd18tWT8h/view?usp=sharing)
 
+  # Demo
+  https://github.com/SujalMishra/MIS-Assesment/assets/98722988/8d85fd5d-f913-4eb7-bd8c-de0ee5fa640d
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) installed on your machine
